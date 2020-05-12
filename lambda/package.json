@@ -1,0 +1,9 @@
+{
+  "name": "hello-world-debug-lambda",
+  "license": "NONE",
+  "private": true,
+  "devDependencies": {
+    "serverless-latest-layer-version": "^2.1.0",
+    "serverless-pseudo-parameters": "^2.5.0"
+  }
+}

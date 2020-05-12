@@ -1,0 +1,32 @@
+service: hello-world-debug
+
+frameworkVersion: '>=1.34.0 <2.0.0'
+
+versionFunctions: true
+
+package:
+  individually: true
+
+plugins:
+  - serverless-latest-layer-version
+  - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-north-1
+  stage: playground
+
+functions:
+  handler:
+    timeout: 900
+    handler: src/example.handler
+    environment:
+      DEBUG_PROXY: 5704f82b.ngrok.io:80
+    layers:
+      - arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:layer:sandbox-debugger-nodejs12:latest
+    package:
+      exclude:
+        - ./**
+        - '!src/**'
+
